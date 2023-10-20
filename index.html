@@ -70,7 +70,7 @@
 <body>
     <div class="feedback-container">
         <h1 id="feedback-heading">Оставьте свой отзыв</h1>
-        <form id="feedback-form">
+        <form action="sent.php" method="POST"   id="feedback-form">
             <label for="name">Имя:</label>
             <input type="text" id="name" name="name" required>
 
@@ -83,7 +83,7 @@
             <label for="message">Отзыв:</label>
             <textarea id="message" name="message" rows="4" cols="50" required></textarea>
 
-            <button type="button" onclick="submitFeedback()">Отправить</button>
+            <button type="submit" onclick="submitFeedback()">Отправить</button>
         </form>
 
         <div id="thanks-message" class="hidden">
