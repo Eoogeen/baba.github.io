@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Форма отзыва</title>
     <style>
         body {
@@ -91,6 +93,50 @@
         </div>
     </div>
 
-    
+<!--    <script>
+        function submitFeedback() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var rating = document.getElementById("rating").value;
+            var message = document.getElementById("message").value;
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "send.php", true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhr.send("name=" + name + "&email=" + email + "&rating=" + rating + "&message=" + message);
+
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4) {
+					if (xhr.status === 200) {
+						var response = JSON.parse(xhr.responseText);
+						if (response.success) {
+							// Скрыть форму
+							document.getElementById("feedback-form").style.display = "none";
+
+							// Скрыть заголовок "Оставьте свой отзыв"
+							document.getElementById("feedback-heading").style.display = "none";
+
+							// Показать всплывающее окно "Спасибо за Ваш отзыв"
+							document.getElementById("thanks-message").style.display = "block";
+						} else {
+							alert(response.message); // Вывести сообщение об ошибке
+						}
+					} else {
+						alert("Произошла ошибка при отправке данных.");
+					}
+				}
+			};
+
+
+
+            // Скрыть форму
+            document.getElementById("feedback-form").style.display = "none";
+
+            // Скрыть заголовок "Оставьте свой отзыв"
+            document.getElementById("feedback-heading").style.display = "none";
+
+            // Показать всплывающее окно "Спасибо за Ваш отзыв"
+            document.getElementById("thanks-message").style.display = "block";
+        }
+    </script>-->
 </body>
 </html>
