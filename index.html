@@ -97,11 +97,34 @@
             var email = document.getElementById("email").value;
             var rating = document.getElementById("rating").value;
             var message = document.getElementById("message").value;
-            var text = "Имя: " + name + "%0AEmail: " + email + "%0AОценка: " + rating + "%0AОтзыв: " + message;
-            var url = "https://api.telegram.org/bot6518414174:AAH-DS-4IwEkWCKDpp2sPW8s2MCBu_9-Eb8/sendMessage?chat_id=-1001944436781&text=" + text;
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", url, true);
-            xhr.send();
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "send.php", true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhr.send("name=" + name + "&email=" + email + "&rating=" + rating + "&message=" + message);
+
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4) {
+					if (xhr.status === 200) {
+						var response = JSON.parse(xhr.responseText);
+						if (response.success) {
+							// Скрыть форму
+							document.getElementById("feedback-form").style.display = "none";
+
+							// Скрыть заголовок "Оставьте свой отзыв"
+							document.getElementById("feedback-heading").style.display = "none";
+
+							// Показать всплывающее окно "Спасибо за Ваш отзыв"
+							document.getElementById("thanks-message").style.display = "block";
+						} else {
+							alert(response.message); // Вывести сообщение об ошибке
+						}
+					} else {
+						alert("Произошла ошибка при отправке данных.");
+					}
+				}
+			};
+
+
 
             // Скрыть форму
             document.getElementById("feedback-form").style.display = "none";
